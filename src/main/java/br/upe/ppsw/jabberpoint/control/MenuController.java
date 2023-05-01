@@ -11,7 +11,9 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.springframework.util.ResourceUtils;
 
+import br.upe.ppsw.jabberpoint.model.Accessor;
 import br.upe.ppsw.jabberpoint.model.Presentation;
+import br.upe.ppsw.jabberpoint.model.XMLAccessor;
 import br.upe.ppsw.jabberpoint.view.AboutBox;
 
 public class MenuController extends MenuBar {
@@ -56,10 +58,20 @@ public class MenuController extends MenuBar {
 
 				Accessor xmlAccessor = new XMLAccessor();
 				try {
-					xmlAccessor.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
+					xmlAccessor.loadFile(
+							presentation,
+							ResourceUtils
+							.getFile(TESTFILE)
+							.getAbsolutePath()
+							);
 					presentation.setSlideNumber(0);
 				} catch (IOException exc) {
-					JOptionPane.showMessageDialog(parent, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(
+							parent,
+							IOEX + exc,
+							LOADERR,
+							JOptionPane.ERROR_MESSAGE
+							);
 				}
 
 				parent.repaint();
@@ -83,7 +95,12 @@ public class MenuController extends MenuBar {
 				try {
 					xmlAccessor.saveFile(presentation, SAVEFILE);
 				} catch (IOException exc) {
-					JOptionPane.showMessageDialog(parent, IOEX + exc, SAVEERR, JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(
+							parent,
+							IOEX + exc,
+							SAVEERR,
+							JOptionPane.ERROR_MESSAGE
+							);
 				}
 			}
 		});
