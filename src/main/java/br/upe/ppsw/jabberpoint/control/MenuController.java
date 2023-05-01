@@ -7,7 +7,10 @@ import java.awt.MenuItem;
 import java.awt.MenuShortcut;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
+
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.springframework.util.ResourceUtils;
 
@@ -50,32 +53,26 @@ public class MenuController extends MenuBar {
 		MenuItem menuItem;
 
 		Menu fileMenu = new Menu(FILE);
-		fileMenu.add(menuItem = mkMenuItem(OPEN));
+		fileMenu.add(menuItem = mkMenuItem(OPEN, 'O'));
 
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				presentation.clear();
-
-				Accessor xmlAccessor = new XMLAccessor();
-				try {
-					xmlAccessor.loadFile(
-							presentation,
-							ResourceUtils
-							.getFile(TESTFILE)
-							.getAbsolutePath()
-							);
-					presentation.setSlideNumber(0);
-				} catch (IOException exc) {
-					JOptionPane.showMessageDialog(
-							parent,
-							IOEX + exc,
-							LOADERR,
-							JOptionPane.ERROR_MESSAGE
-							);
-				}
-
-				parent.repaint();
+				openFile();
 			}
+
+//			public void actionPerformed(ActionEvent actionEvent) {
+//				presentation.clear();
+//
+//				Accessor xmlAccessor = new XMLAccessor();
+//				try {
+//					xmlAccessor.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
+//					presentation.setSlideNumber(0);
+//				} catch (IOException exc) {
+//					JOptionPane.showMessageDialog(parent, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
+//				}
+//
+//				parent.repaint();
+//			}
 		});
 
 		fileMenu.add(menuItem = mkMenuItem(NEW));
@@ -95,12 +92,7 @@ public class MenuController extends MenuBar {
 				try {
 					xmlAccessor.saveFile(presentation, SAVEFILE);
 				} catch (IOException exc) {
-					JOptionPane.showMessageDialog(
-							parent,
-							IOEX + exc,
-							SAVEERR,
-							JOptionPane.ERROR_MESSAGE
-							);
+					JOptionPane.showMessageDialog(parent, IOEX + exc, SAVEERR, JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -158,7 +150,30 @@ public class MenuController extends MenuBar {
 		setHelpMenu(helpMenu);
 	}
 
+	protected void openFile() {
+		JFileChooser fileChooser = new JFileChooser();
+		int option = fileChooser.showOpenDialog(parent);
+		if (option == JFileChooser.APPROVE_OPTION) {
+			String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+
+			presentation.clear();
+			Accessor xmlAccessor = new XMLAccessor();
+			try {
+				xmlAccessor.loadFile(presentation, filePath);
+				presentation.setSlideNumber(0);
+			} catch (IOException exc) {
+				JOptionPane.showMessageDialog(parent, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
+			}
+			parent.repaint();
+		}
+	}
+
 	public MenuItem mkMenuItem(String name) {
 		return new MenuItem(name, new MenuShortcut(name.charAt(0)));
+	}
+
+	protected MenuItem mkMenuItem(String name, char shortcut) {
+		MenuItem menuItem = new MenuItem(name, new MenuShortcut(shortcut));
+		return menuItem;
 	}
 }
