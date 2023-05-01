@@ -4,13 +4,13 @@ import java.io.FileNotFoundException;
 
 import org.springframework.util.ResourceUtils;
 
-public class DemoPresentation implements IPresentationLoader {
+public class DemoPresentation implements IFileLoader {
 
 	public static DemoPresentation getDemoPresentation() {
 		return new DemoPresentation();
 	}
 
-	public void loadPresentation(Presentation presentation, String unusedFilename)
+	public void loadFile(Presentation presentation, String unusedFilename)
 			throws FileNotFoundException {
 
 		presentation.setTitle("Apresentação de Demonstração");
