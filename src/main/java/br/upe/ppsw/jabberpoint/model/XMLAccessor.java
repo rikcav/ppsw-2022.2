@@ -38,11 +38,14 @@ public class XMLAccessor extends Accessor {
 	}
 
 	@Override
-	public void loadFile(Presentation presentation, String filename) throws IOException {
+	public void loadFile(Presentation presentation, String filename)
+			throws IOException {
+
 		int slideNumber, itemNumber, max = 0, maxItems = 0;
 
 		try {
-			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			DocumentBuilder builder;
+			builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 
 			Document document = builder.parse(new File(filename));
 
@@ -106,7 +109,9 @@ public class XMLAccessor extends Accessor {
 	}
 
 	@Override
-	public void saveFile(Presentation presentation, String filename) throws IOException {
+	public void saveFile(Presentation pres, String filename)
+			throws IOException {
+
 		PrintWriter out = new PrintWriter(new FileWriter(filename));
 
 		out.println("<?xml version=\"1.0\"?>");
@@ -114,11 +119,11 @@ public class XMLAccessor extends Accessor {
 		out.println("<presentation>");
 
 		out.print("<showtitle>");
-		out.print(presentation.getTitle());
+		out.print(pres.getTitle());
 		out.println("</showtitle>");
 
-		for (int slideNumber = 0; slideNumber < presentation.getSize(); slideNumber++) {
-			Slide slide = presentation.getSlide(slideNumber);
+		for (int slideNumber = 0; slideNumber < pres.getSize(); slideNumber++) {
+			Slide slide = pres.getSlide(slideNumber);
 
 			out.println("<slide>");
 			out.println("<title>" + slide.getTitle() + "</title>");
