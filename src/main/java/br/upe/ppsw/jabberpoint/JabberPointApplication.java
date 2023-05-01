@@ -42,7 +42,7 @@ public class JabberPointApplication implements CommandLineRunner {
 			if (args.length <= 1) {
 				DemoPresentation
 				.getDemoPresentation()
-				.loadPresentation(presentation, IOERR);
+				.loadFile(presentation, IOERR);
 			} else {
 				new XMLAccessor().loadFile(presentation, args[0]);
 			}
