@@ -5,7 +5,8 @@ import java.io.FileNotFoundException;
 
 public class AccessorFactory {
 
-	public IFileLoader loadAccessor(String file) throws FileNotFoundException {
+	public static IFileLoader loadAccessor(String file)
+			throws FileNotFoundException {
 
 		String filename = new File(file).getName();
 		String extension = null;
@@ -22,7 +23,8 @@ public class AccessorFactory {
 			return new DemoPresentation();
 	}
 
-	public IFileSaver saveAccessor(String file) throws FileNotFoundException {
+	public static IFileSaver saveAccessor(String file)
+			throws FileNotFoundException {
 
 		String filename = new File(file).getName();
 		String extension = null;

@@ -7,12 +7,14 @@ import java.awt.MenuItem;
 import java.awt.MenuShortcut;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import br.upe.ppsw.jabberpoint.model.Accessor;
+import br.upe.ppsw.jabberpoint.model.AccessorFactory;
 import br.upe.ppsw.jabberpoint.model.HTMLAccessor;
 import br.upe.ppsw.jabberpoint.model.Presentation;
 import br.upe.ppsw.jabberpoint.model.XMLAccessor;
@@ -96,9 +98,10 @@ public class MenuController extends MenuBar {
 
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Accessor xmlAccessor = new XMLAccessor();
 				try {
-					xmlAccessor.saveFile(presentation, SAVEFILE);
+					Accessor accessor;
+					accessor = (Accessor) AccessorFactory.saveAccessor(SAVEFILE);
+					accessor.saveFile(presentation, SAVEFILE);
 				} catch (IOException exc) {
 					JOptionPane.showMessageDialog(
 							parent,
@@ -162,19 +165,17 @@ public class MenuController extends MenuBar {
 		setHelpMenu(helpMenu);
 	}
 
-	protected void openFile() {
+	protected void openFile() throws FileNotFoundException {
 		JFileChooser fileChooser = new JFileChooser();
 		int option = fileChooser.showOpenDialog(parent);
 		if (option == JFileChooser.APPROVE_OPTION) {
 			String filePath = fileChooser.getSelectedFile().getAbsolutePath();
 
 			presentation.clear();
-//			Accessor xmlAccessor = new XMLAccessor();
-			Accessor htmlAccessor = new HTMLAccessor();
+			Accessor accessor = (Accessor) AccessorFactory.loadAccessor(filePath);
 
 			try {
-//				xmlAccessor.loadFile(presentation, filePath);
-				htmlAccessor.loadFile(presentation, filePath);
+				accessor.loadFile(presentation, filePath);
 				presentation.setSlideNumber(0);
 			} catch (IOException exc) {
 				JOptionPane.showMessageDialog(
