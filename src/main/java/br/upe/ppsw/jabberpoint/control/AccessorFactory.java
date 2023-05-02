@@ -10,7 +10,7 @@ import br.upe.ppsw.jabberpoint.model.IFileSaver;
 import br.upe.ppsw.jabberpoint.model.JSONAccessor;
 import br.upe.ppsw.jabberpoint.model.XMLAccessor;
 
-public class AccessorController {
+public class AccessorFactory {
 
 	public IFileLoader loadAccessor(String file) throws FileNotFoundException {
 
