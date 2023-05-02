@@ -69,20 +69,6 @@ public class MenuController extends MenuBar {
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
-
-//			public void actionPerformed(ActionEvent actionEvent) {
-//				presentation.clear();
-//
-//				Accessor xmlAccessor = new XMLAccessor();
-//				try {
-//					xmlAccessor.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
-//					presentation.setSlideNumber(0);
-//				} catch (IOException exc) {
-//					JOptionPane.showMessageDialog(parent, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
-//				}
-//
-//				parent.repaint();
-//			}
 		});
 
 		fileMenu.add(menuItem = mkMenuItem(NEW));
