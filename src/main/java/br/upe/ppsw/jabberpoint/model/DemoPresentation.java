@@ -1,10 +1,13 @@
 package br.upe.ppsw.jabberpoint.model;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import org.springframework.util.ResourceUtils;
 
-public class DemoPresentation implements IFileLoader {
+import br.upe.ppsw.jabberpoint.view.SlideViewerComponent;
+
+public class DemoPresentation extends AbsPresentation implements IFileLoader {
 
 	public static DemoPresentation getDemoPresentation() {
 		return new DemoPresentation();
@@ -52,4 +55,65 @@ public class DemoPresentation implements IFileLoader {
 		presentation.append(slide);
 	}
 
+	@Override
+	public int getSize() {
+		return 0;
+	}
+
+	@Override
+	public String getTitle() {
+		return null;
+	}
+
+	@Override
+	public void setTitle(String nt) {
+	}
+
+	@Override
+	public void setShowView(SlideViewerComponent slideViewerComponent) {
+	}
+
+	@Override
+	public int getSlideNumber() {
+		return 0;
+	}
+
+	@Override
+	public void setSlideNumber(int number) {
+	}
+
+	@Override
+	public void prevSlide() {
+	}
+
+	@Override
+	public void nextSlide() {
+	}
+
+	@Override
+	public void clear() {
+	}
+
+	@Override
+	public void append(Slide slide) {
+	}
+
+	@Override
+	public Slide getSlide(int number) {
+		return null;
+	}
+
+	@Override
+	public Slide getCurrentSlide() {
+		return null;
+	}
+
+	@Override
+	public void exit(int n) {
+	}
+
+	@Override
+	public List<Slide> getSlides() {
+		return null;
+	}
 }
