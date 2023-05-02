@@ -13,6 +13,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import br.upe.ppsw.jabberpoint.model.Accessor;
+import br.upe.ppsw.jabberpoint.model.HTMLAccessor;
 import br.upe.ppsw.jabberpoint.model.Presentation;
 import br.upe.ppsw.jabberpoint.model.XMLAccessor;
 import br.upe.ppsw.jabberpoint.view.AboutBox;
@@ -168,9 +169,12 @@ public class MenuController extends MenuBar {
 			String filePath = fileChooser.getSelectedFile().getAbsolutePath();
 
 			presentation.clear();
-			Accessor xmlAccessor = new XMLAccessor();
+//			Accessor xmlAccessor = new XMLAccessor();
+			Accessor htmlAccessor = new HTMLAccessor();
+
 			try {
-				xmlAccessor.loadFile(presentation, filePath);
+//				xmlAccessor.loadFile(presentation, filePath);
+				htmlAccessor.loadFile(presentation, filePath);
 				presentation.setSlideNumber(0);
 			} catch (IOException exc) {
 				JOptionPane.showMessageDialog(
