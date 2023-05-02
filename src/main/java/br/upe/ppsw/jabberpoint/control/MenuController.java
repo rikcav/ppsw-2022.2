@@ -94,14 +94,12 @@ public class MenuController extends MenuBar {
 			}
 		});
 
-		fileMenu.add(menuItem = mkMenuItem(SAVE));
+		fileMenu.add(menuItem = mkMenuItem(SAVE, 'S'));
 
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Accessor accessor;
-					accessor = (Accessor) AccessorFactory.saveAccessor(SAVEFILE);
-					accessor.saveFile(presentation, SAVEFILE);
+					saveFile();
 				} catch (IOException exc) {
 					JOptionPane.showMessageDialog(
 							parent,
@@ -186,6 +184,25 @@ public class MenuController extends MenuBar {
 			}
 			parent.repaint();
 		}
+	}
+	
+	public void saveFile() throws FileNotFoundException {
+	    JFileChooser fileChooser = new JFileChooser();
+	    int option = fileChooser.showSaveDialog(parent);
+	    if (option == JFileChooser.APPROVE_OPTION) {
+	        String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+
+	        Accessor accessor = (Accessor) AccessorFactory.saveAccessor(filePath);
+	        try {
+	            accessor.saveFile(presentation, filePath);
+	        } catch (IOException exc) {
+	            JOptionPane.showMessageDialog(
+	            		parent,
+	            		IOEX + exc,
+	            		SAVEERR,
+	            		JOptionPane.ERROR_MESSAGE);
+	        }
+	    }
 	}
 
 	public MenuItem mkMenuItem(String name) {
