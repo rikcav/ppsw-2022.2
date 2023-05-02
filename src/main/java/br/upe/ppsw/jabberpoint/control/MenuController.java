@@ -63,8 +63,7 @@ public class MenuController extends MenuBar {
 							parent,
 							IOEX + e,
 							LOADERR,
-							JOptionPane.ERROR_MESSAGE
-							);
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 
@@ -100,7 +99,11 @@ public class MenuController extends MenuBar {
 				try {
 					xmlAccessor.saveFile(presentation, SAVEFILE);
 				} catch (IOException exc) {
-					JOptionPane.showMessageDialog(parent, IOEX + exc, SAVEERR, JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(
+							parent,
+							IOEX + exc,
+							SAVEERR,
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -170,7 +173,11 @@ public class MenuController extends MenuBar {
 				xmlAccessor.loadFile(presentation, filePath);
 				presentation.setSlideNumber(0);
 			} catch (IOException exc) {
-				JOptionPane.showMessageDialog(parent, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(
+						parent,
+						IOEX + exc,
+						LOADERR,
+						JOptionPane.ERROR_MESSAGE);
 			}
 			parent.repaint();
 		}
