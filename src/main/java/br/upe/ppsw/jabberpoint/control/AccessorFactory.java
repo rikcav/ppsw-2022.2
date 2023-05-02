@@ -27,7 +27,6 @@ public class AccessorFactory {
 			return new HTMLAccessor();
 		else
 			return new DemoPresentation();
-
 	}
 
 	public IFileSaver saveAccessor(String file) throws FileNotFoundException {
@@ -45,6 +44,5 @@ public class AccessorFactory {
 			return new HTMLAccessor();
 		else
 			return null;
-
 	}
 }
