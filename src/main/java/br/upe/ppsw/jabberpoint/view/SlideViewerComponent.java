@@ -8,6 +8,7 @@ import java.awt.Rectangle;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import br.upe.ppsw.jabberpoint.model.AbsPresentation;
 import br.upe.ppsw.jabberpoint.model.Presentation;
 import br.upe.ppsw.jabberpoint.model.Slide;
 
@@ -38,16 +39,16 @@ public class SlideViewerComponent extends JComponent {
 		return new Dimension(Slide.WIDTH, Slide.HEIGHT);
 	}
 
-	public void update(Presentation presentation, Slide data) {
+	public void update(AbsPresentation absPresentation, Slide data) {
 		if (data == null) {
 			repaint();
 			return;
 		}
 
-		this.presentation = presentation;
+		this.presentation = (Presentation) absPresentation;
 		this.slide = data;
 		repaint();
-		frame.setTitle(presentation.getTitle());
+		frame.setTitle(absPresentation.getTitle());
 	}
 
 	public void paintComponent(Graphics g) {
