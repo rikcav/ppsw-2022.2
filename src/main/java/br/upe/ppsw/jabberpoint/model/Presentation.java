@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.upe.ppsw.jabberpoint.view.SlideViewerComponent;
 
-public class Presentation {
+public class Presentation extends AbsPresentation {
 
 	private String title;
 	private ArrayList<Slide> showList = null;
@@ -84,8 +84,8 @@ public class Presentation {
 	public void exit(int n) {
 		System.exit(n);
 	}
-	
+
 	public List<Slide> getSlides() {
-	    return new ArrayList<>(showList);
+		return new ArrayList<>(showList);
 	}
 }
