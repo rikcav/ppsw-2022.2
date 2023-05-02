@@ -34,7 +34,6 @@ public class XMLAccessor extends Accessor {
 	private String getTitle(Element element, String tagName) {
 		NodeList titles = element.getElementsByTagName(tagName);
 		return titles.item(0).getTextContent();
-
 	}
 
 	@Override
@@ -78,7 +77,6 @@ public class XMLAccessor extends Accessor {
 		} catch (ParserConfigurationException pcx) {
 			System.err.println(PCE);
 		}
-
 	}
 
 	protected void loadSlideItem(Slide slide, Element item) {
