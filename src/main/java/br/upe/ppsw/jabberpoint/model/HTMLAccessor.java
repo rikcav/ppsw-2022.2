@@ -113,7 +113,6 @@ public class HTMLAccessor extends Accessor {
 
 		PrintWriter out = new PrintWriter(new FileWriter(filename));
 
-		out.println("<?xml version=\"1.0\"?>");
 		out.println("<!DOCTYPE presentation SYSTEM \"jabberpoint.dtd\">");
 		out.println("<presentation>");
 
