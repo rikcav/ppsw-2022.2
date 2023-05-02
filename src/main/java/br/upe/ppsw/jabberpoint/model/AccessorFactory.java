@@ -1,14 +1,7 @@
-package br.upe.ppsw.jabberpoint.control;
+package br.upe.ppsw.jabberpoint.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-
-import br.upe.ppsw.jabberpoint.model.DemoPresentation;
-import br.upe.ppsw.jabberpoint.model.HTMLAccessor;
-import br.upe.ppsw.jabberpoint.model.IFileLoader;
-import br.upe.ppsw.jabberpoint.model.IFileSaver;
-import br.upe.ppsw.jabberpoint.model.JSONAccessor;
-import br.upe.ppsw.jabberpoint.model.XMLAccessor;
 
 public class AccessorFactory {
 
