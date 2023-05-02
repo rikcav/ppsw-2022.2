@@ -70,4 +70,8 @@ public class Slide {
 		return Math.min(((float) area.width) / ((float) WIDTH),
 				((float) area.height) / ((float) HEIGHT));
 	}
+
+	public Vector<SlideItem> getItems() {
+	    return new Vector<>(items);
+	}
 }
